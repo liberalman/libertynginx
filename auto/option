@@ -1,0 +1,36 @@
+
+help=no
+NGX_OBJS=objs
+
+opt=
+for option
+do
+	opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+	
+	case "$option" in
+		-*=*)	value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'`	;;
+		*)		value=""        										;;
+	esac
+	
+	case "$option" in
+		--help)		help=yes 											;;
+		--prefix=)	NGX_PREFIX="!" 										;;
+		--prefix=*)	NGX_PREFIX="$value"        							;;
+		--builddir=*)	NGX_OJBS="$value"     							;;
+		*) 
+			echo "$0: error: invalid option \"$option\""
+			exit 1														;;
+	esac
+done
+
+NGX_CONFIGURE="$opt"
+
+if [ $help = yes ]; then
+cat << END
+	--help			print this message
+	--prefix=PATH		set installation prefix
+END
+	exit 1
+fi
+
+
