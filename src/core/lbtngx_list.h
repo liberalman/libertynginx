@@ -1,4 +1,4 @@
-#ifndefine LBTNGX_LIST_H
+#ifndef LBTNGX_LIST_H
 #define LBTNGX_LIST_H
 
 typedef struct {

@@ -12,9 +12,9 @@ extern int stack_;
 #ifdef _PRINT_STACK
 #define PRINT_STACK_IN(format, argc...) \
     ++stack_; \
-    printf("#%d[%s()\t\t:%s]" format , stack_, __FUNCTION__, __FILE__, ##argc);
+    printf("#in #%d[%s()\t\t:%s:%d]" format , stack_, __FUNCTION__, __FILE__, __LINE__, ##argc);
 #define PRINT_STACK_OUT(format, argc...)  \
-    printf("#%d[%s()\t\t:%s]" format , stack_, __FUNCTION__, __FILE__, ##argc); \
+    printf("#out#%d[%s()\t\t:%s:%d]" format , stack_, __FUNCTION__, __FILE__, __LINE__, ##argc); \
     stack_--;
 #else
 #define PRINT_STACK_OUT(format, argc...)
